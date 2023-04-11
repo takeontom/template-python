@@ -1,0 +1,47 @@
+{
+  "name": "python-project",
+  "dockerComposeFile": "./docker-compose.yml",
+  "workspaceFolder": "/workspace",
+  "service": "web-dev",
+  "runServices": [
+    "web-dev",
+    "db-dev"
+  ],
+  "forwardPorts": [
+    8000
+  ],
+  "remoteUser": "dev",
+  "containerUser": "dev",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "eamodio.gitlens",
+        "ms-python.python",
+        "charliermarsh.ruff"
+      ],
+      "settings": {
+        "python.autoComplete.extraPaths": [
+          "__pypackages__/3.11/lib"
+        ],
+        "python.analysis.extraPaths": [
+          "__pypackages__/3.11/lib"
+        ],
+        "python.linting.enabled": true,
+        "python.experiments.enabled": false,
+        "python.languageServer": "Default",
+        "python.terminal.activateEnvironment": false,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true,
+          "source.fixAll": true
+        },
+        "python.formatting.provider": "black",
+        "[python]": {
+          "editor.detectIndentation": false,
+          "editor.tabSize": 4
+        }
+      }
+    }
+  },
+  "postCreateCommand": "pdm install && pdm run pre-commit install --install-hooks"
+}

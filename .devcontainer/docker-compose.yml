@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  web-dev:
+    build:
+      dockerfile: Dockerfile
+    depends_on:
+      - db-dev
+    links:
+      - db-dev
+    volumes:
+      - ../:/workspace
+    ports:
+      - 8050:8000
+    user: dev:dev
+    tty: true
+    restart: "no"
+
+  db-dev:
+    image: postgis/postgis:15-3.3
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=dbuser
+      - POSTGRES_DB=db
+    volumes:
+      - db-dev:/var/lib/postgresql/data
+    restart: "no"
+
+volumes:
+  db-dev:
