@@ -17,7 +17,7 @@ services:
     restart: "no"
 
   db-dev:
-    image: postgis/postgis:15-3.3
+    image: postgres:15.2
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_USER=dbuser
